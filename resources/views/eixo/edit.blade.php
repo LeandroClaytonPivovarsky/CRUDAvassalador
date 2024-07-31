@@ -7,7 +7,7 @@
     <title>Novo Eixo</title>
 </head>
 <body>
-    <h1>Novo Eixo</h1>
+    <h1>Editar Eixo "{{$eixo->nome}}"</h1>
     <hr>
     <a href="{{route('eixo.index')}}">Voltar</a>
     <hr>

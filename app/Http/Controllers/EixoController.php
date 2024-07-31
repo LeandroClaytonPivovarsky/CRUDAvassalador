@@ -34,7 +34,7 @@ class EixoController extends Controller
         $eixo->descricao = $request->descricao;
         $eixo->save();
 
-        return redirect()->route('eixo.create');
+        return redirect()->route('eixo.index');
         
     }
 
@@ -60,7 +60,7 @@ class EixoController extends Controller
         $eixo = Eixo::find($id);
 
         if (isset($eixo)) {
-            return view('eixo.show', compact(['eixo']));
+            return view('eixo.edit', compact(['eixo']));
         }
         return "<H1>DEU MERDA PILANTRAKKKKKKKKKKKKKKKKKKKK!</H1>";
 
@@ -71,7 +71,14 @@ class EixoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $eixo = Eixo::find($id);
+
+        if(isset($eixo)){
+            $eixo->nome = $request->nome;
+            $eixo->descricao = $request->descricao;
+            $eixo->save();
+            return redirect()->route('eixo.index');
+        }
     }
 
     /**
@@ -79,6 +86,17 @@ class EixoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $eixo = Eixo::find($id);
+        $eixoDeletado = new Eixo();
+
+        if (isset($eixo)) {
+            $eixoDeletado->nome = $eixo->nome;
+            
+            $eixoDeletado->descricao = $eixo->descricao;
+            $eixo->delete();
+            return view('eixo.delete', compact('eixoDeletado'));
+
+        }
+        return "<H1>DEU MERDA PILANTRAKKKKKKKKKKKKKKKKKKKK!</H1>";
     }
 }

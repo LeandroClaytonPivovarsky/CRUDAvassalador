@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>EIXO</title>
+
+    <link rel="stylesheet" href=".../css/app.css">
 </head>
 <body>
     <h1>Tabela de Eixos</h1>
@@ -36,7 +38,14 @@
                         <a href="{{route('eixo.show', $item->id)}}">+Info</a>
                     </td>
                     <td>
-                        <a href="{{route('eixo.show', $item->id)}}">+Info</a>
+                        <a href="{{route('eixo.edit', $item->id)}}">Editar</a>
+                    </td>
+                    <td>
+                        <form action="{{route('eixo.destroy', $item->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">DELETAR???</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
